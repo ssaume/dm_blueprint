@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DM Capability Tree 三階互動式產品藍圖與季度數量統計">
+  <title>DM Capability Tree Roadmap</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Demand Management Platform</p>
+      <h1>DM Capability Tree Roadmap</h1>
+      <p class="subtitle">展開三階能力樹，為每個功能項目安排年度、季度與數量，並自動彙總模組規劃。</p>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="button secondary" id="expandAllBtn">全部展開</button>
+      <button type="button" class="button secondary" id="collapseAllBtn">全部收合</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="metrics" aria-label="統計摘要">
+      <article class="metric-card">
+        <span>一階模組</span>
+        <strong id="moduleCount">0</strong>
+      </article>
+      <article class="metric-card">
+        <span>二階能力</span>
+        <strong id="capabilityCount">0</strong>
+      </article>
+      <article class="metric-card">
+        <span>三階項目</span>
+        <strong id="itemCount">0</strong>
+      </article>
+      <article class="metric-card">
+        <span>已排程總數量</span>
+        <strong id="scheduledTotal">0</strong>
+      </article>
+    </section>
+
+    <section class="toolbar card">
+      <label class="search-control">
+        <span>搜尋能力</span>
+        <input id="searchInput" type="search" placeholder="輸入模組、能力或功能名稱">
+      </label>
+      <div class="toolbar-actions">
+        <button type="button" class="button" id="exportCsvBtn">匯出 CSV</button>
+        <button type="button" class="button" id="exportJsonBtn">備份 JSON</button>
+        <label class="button secondary file-button">
+          匯入 JSON
+          <input id="importJsonInput" type="file" accept="application/json">
+        </label>
+        <button type="button" class="button danger" id="resetBtn">清除排程</button>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <section class="tree-panel card" aria-labelledby="treeTitle">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Capability Tree</p>
+            <h2 id="treeTitle">三階能力樹</h2>
+          </div>
+          <span class="hint">第三階可加入多筆季度規劃</span>
+        </div>
+        <div id="treeRoot" class="tree-root"></div>
+        <div id="emptyState" class="empty-state" hidden>找不到符合搜尋條件的能力項目。</div>
+      </section>
+
+      <aside class="summary-panel card" aria-labelledby="summaryTitle">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Roadmap Summary</p>
+            <h2 id="summaryTitle">模組季度彙總</h2>
+          </div>
+        </div>
+        <div class="summary-filter">
+          <label>
+            <span>年度</span>
+            <select id="summaryYearFilter">
+              <option value="ALL">全部年度</option>
+            </select>
+          </label>
+          <label>
+            <span>季度</span>
+            <select id="summaryQuarterFilter">
+              <option value="ALL">全部季度</option>
+              <option value="Q1">Q1</option>
+              <option value="Q2">Q2</option>
+              <option value="Q3">Q3</option>
+              <option value="Q4">Q4</option>
+            </select>
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead id="summaryHead"></thead>
+            <tbody id="summaryBody"></tbody>
+          </table>
+        </div>
+        <p id="summaryEmpty" class="empty-state">尚未輸入季度規劃。</p>
+      </aside>
+    </div>
+  </main>
+
+  <template id="leafTemplate">
+    <article class="leaf-item">
+      <div class="leaf-heading">
+        <div>
+          <span class="leaf-code"></span>
+          <h4 class="leaf-name"></h4>
+        </div>
+        <span class="leaf-total">0</span>
+      </div>
+      <div class="entry-form" role="group" aria-label="新增季度規劃">
+        <label>
+          <span>年度</span>
+          <input class="year-input" type="number" min="2020" max="2100" step="1">
+        </label>
+        <label>
+          <span>季度</span>
+          <select class="quarter-input">
+            <option value="Q1">Q1</option>
+            <option value="Q2">Q2</option>
+            <option value="Q3">Q3</option>
+            <option value="Q4">Q4</option>
+          </select>
+        </label>
+        <label>
+          <span>數量</span>
+          <input class="qty-input" type="number" min="1" step="1" value="1">
+        </label>
+        <button type="button" class="button add-entry">加入</button>
+      </div>
+      <div class="entry-list"></div>
+    </article>
+  </template>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

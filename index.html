@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="以業務情境瀏覽 DM 與 SCP 平台功能、使用時機、結果與相依關係。" />
+  <meta name="description" content="以業務情境瀏覽 DM 與 SCP 平台功能、細部操作、執行頻率、使用時機、結果與相依關係。" />
   <title>DM × SCP 情境導向功能原型</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -30,11 +30,12 @@
         <div class="hero-copy">
           <span class="eyebrow">Scenario-first product architecture</span>
           <h1>先從「發生什麼事」找到該用的功能</h1>
-          <p>本原型不模擬實際運算，而是回答三個問題：什麼情況下使用、會得到什麼結果、還會牽涉哪些功能。</p>
+          <p>本原型不執行真實運算，而是回答四個問題：什麼情況下使用、可能包含哪些操作、應以什麼頻率執行、會得到什麼結果。</p>
         </div>
         <div class="hero-metrics" aria-label="原型統計">
           <div><strong id="scenarioMetric">14</strong><span>主要情境</span></div>
-          <div><strong id="capabilityMetric">112</strong><span>功能項目</span></div>
+          <div><strong id="categoryMetric">112</strong><span>功能類別</span></div>
+          <div><strong id="detailMetric">589</strong><span>細部功能</span></div>
           <div><strong>2</strong><span>整合平台</span></div>
         </div>
       </section>
@@ -45,11 +46,27 @@
           <input id="globalSearch" type="search" placeholder="搜尋情境、功能、模組或關鍵字…" autocomplete="off" />
           <kbd>/</kbd>
         </div>
-        <div class="segmented" id="platformFilter" aria-label="平台篩選">
-          <button class="active" data-platform="ALL">全部</button>
-          <button data-platform="DM">DM</button>
-          <button data-platform="SCP">SCP</button>
-          <button data-platform="CROSS">跨平台</button>
+        <div class="toolbar-actions">
+          <label class="frequency-select"><span>執行頻率</span><select id="frequencyFilter">
+            <option value="ALL">全部頻率</option>
+            <option value="EVENT">事件觸發</option>
+            <option value="CONT">持續監控</option>
+            <option value="RUN">規劃批次</option>
+            <option value="HOURLY">小時批次</option>
+            <option value="DAILY">每日</option>
+            <option value="WEEKLY">每週</option>
+            <option value="MONTHLY">每月</option>
+            <option value="QUARTERLY">每季治理</option>
+            <option value="CHANGE">變更時</option>
+            <option value="ADHOC">隨需</option>
+            <option value="RELEASE">核准發布</option>
+          </select></label>
+          <div class="segmented" id="platformFilter" aria-label="平台篩選">
+            <button class="active" data-platform="ALL">全部</button>
+            <button data-platform="DM">DM</button>
+            <button data-platform="SCP">SCP</button>
+            <button data-platform="CROSS">跨平台</button>
+          </div>
         </div>
       </section>
 
@@ -92,7 +109,7 @@
             <span class="section-kicker">Capability Catalog</span>
             <h2 id="catalogHeading">完整功能目錄</h2>
           </div>
-          <p>依原始 Excel 模組結構展開，每個功能都包含使用時機、結果與相關功能。</p>
+          <p>依產品模組展開，每個功能類別包含細部操作、執行頻率、使用時機、結果與相關功能。</p>
         </div>
         <div class="catalog-layout">
           <aside class="module-index" id="moduleIndex"></aside>
@@ -107,7 +124,7 @@
 
     <footer>
       <span>Source: 產品架構.xlsx</span>
-      <span>Prototype scope: 使用時機、結果、關聯功能</span>
+      <span>Prototype scope: 情境、細部功能、執行頻率、結果、關聯</span>
     </footer>
   </div>
 
@@ -124,7 +141,7 @@
     <div class="guide-grid">
       <div><strong>1</strong><h3>從情境開始</h3><p>以實際發生的業務問題尋找功能，不必先知道系統模組名稱。</p></div>
       <div><strong>2</strong><h3>查看功能路徑</h3><p>了解先用什麼、接著做什麼，以及 DM／SCP 的交接點。</p></div>
-      <div><strong>3</strong><h3>追查關聯</h3><p>每個功能可繼續打開其前後游、跨平台與治理功能。</p></div>
+      <div><strong>3</strong><h3>查看頻率與細項</h3><p>每個功能類別都可展開細部操作、觸發條件與建議執行節奏。</p></div>
     </div>
     <p class="dialog-note">這是資訊架構與互動概念原型，不會連接真實資料、執行 ATP、MPS、MRP 或最佳化計算。</p>
   </dialog>

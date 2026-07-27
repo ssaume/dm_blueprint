@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="以業務情境瀏覽 DM 與 SCP 平台功能、使用時機、結果與相依關係。" />
+  <title>DM × SCP 情境導向功能原型</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#scenarios" aria-label="回到情境總覽">
+        <span class="brand-mark" aria-hidden="true">DS</span>
+        <span>
+          <strong>DM × SCP Scenario Navigator</strong>
+          <small>情境導向功能互動原型</small>
+        </span>
+      </a>
+      <nav class="topnav" aria-label="主要導覽">
+        <button class="nav-btn active" data-view="scenarios">情境地圖</button>
+        <button class="nav-btn" data-view="journey">跨平台流程</button>
+        <button class="nav-btn" data-view="catalog">功能目錄</button>
+      </nav>
+      <button class="help-btn" id="helpButton" aria-label="開啟原型說明">?</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Scenario-first product architecture</span>
+          <h1>先從「發生什麼事」找到該用的功能</h1>
+          <p>本原型不模擬實際運算，而是回答三個問題：什麼情況下使用、會得到什麼結果、還會牽涉哪些功能。</p>
+        </div>
+        <div class="hero-metrics" aria-label="原型統計">
+          <div><strong id="scenarioMetric">14</strong><span>主要情境</span></div>
+          <div><strong id="capabilityMetric">112</strong><span>功能項目</span></div>
+          <div><strong>2</strong><span>整合平台</span></div>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="篩選工具">
+        <div class="search-wrap">
+          <span aria-hidden="true">⌕</span>
+          <input id="globalSearch" type="search" placeholder="搜尋情境、功能、模組或關鍵字…" autocomplete="off" />
+          <kbd>/</kbd>
+        </div>
+        <div class="segmented" id="platformFilter" aria-label="平台篩選">
+          <button class="active" data-platform="ALL">全部</button>
+          <button data-platform="DM">DM</button>
+          <button data-platform="SCP">SCP</button>
+          <button data-platform="CROSS">跨平台</button>
+        </div>
+      </section>
+
+      <section id="scenariosView" class="view active" aria-labelledby="scenarioHeading">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Scenario Library</span>
+            <h2 id="scenarioHeading">常見業務情境</h2>
+          </div>
+          <p>點選情境查看完整功能路徑、使用條件、預期產出與跨模組關聯。</p>
+        </div>
+        <div id="scenarioGrid" class="scenario-grid"></div>
+        <div id="scenarioEmpty" class="empty-state hidden">
+          <strong>找不到符合條件的情境</strong>
+          <span>請調整平台篩選或搜尋關鍵字。</span>
+        </div>
+      </section>
+
+      <section id="journeyView" class="view" aria-labelledby="journeyHeading">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">End-to-end Journey</span>
+            <h2 id="journeyHeading">DM 到 SCP 的跨平台決策流程</h2>
+          </div>
+          <p>從需求訊號到供應計畫發布，依序呈現平台交接與主要功能。</p>
+        </div>
+        <div id="journeyFlow" class="journey-flow"></div>
+        <aside class="decision-rule">
+          <div class="decision-icon" aria-hidden="true">↳</div>
+          <div>
+            <strong>核心分流原則</strong>
+            <p>需求變動可在既有供應計畫內快速判斷時，留在 DM 執行 ATP；一旦涉及多工廠、產能、材料、庫存或最佳化取捨，則建立正式 SCP 模擬任務。</p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="catalogView" class="view" aria-labelledby="catalogHeading">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Capability Catalog</span>
+            <h2 id="catalogHeading">完整功能目錄</h2>
+          </div>
+          <p>依原始 Excel 模組結構展開，每個功能都包含使用時機、結果與相關功能。</p>
+        </div>
+        <div class="catalog-layout">
+          <aside class="module-index" id="moduleIndex"></aside>
+          <div id="catalogContent" class="catalog-content"></div>
+        </div>
+        <div id="catalogEmpty" class="empty-state hidden">
+          <strong>找不到符合條件的功能</strong>
+          <span>請調整平台篩選或搜尋關鍵字。</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Source: 產品架構.xlsx</span>
+      <span>Prototype scope: 使用時機、結果、關聯功能</span>
+    </footer>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="detail-drawer" id="detailDrawer" aria-hidden="true" aria-label="詳細資料">
+    <button class="drawer-close" id="drawerClose" aria-label="關閉">×</button>
+    <div id="drawerContent"></div>
+  </aside>
+
+  <dialog id="helpDialog" class="help-dialog">
+    <button class="dialog-close" id="helpClose" aria-label="關閉">×</button>
+    <span class="section-kicker">Prototype Guide</span>
+    <h2>這個原型如何使用</h2>
+    <div class="guide-grid">
+      <div><strong>1</strong><h3>從情境開始</h3><p>以實際發生的業務問題尋找功能，不必先知道系統模組名稱。</p></div>
+      <div><strong>2</strong><h3>查看功能路徑</h3><p>了解先用什麼、接著做什麼，以及 DM／SCP 的交接點。</p></div>
+      <div><strong>3</strong><h3>追查關聯</h3><p>每個功能可繼續打開其前後游、跨平台與治理功能。</p></div>
+    </div>
+    <p class="dialog-note">這是資訊架構與互動概念原型，不會連接真實資料、執行 ATP、MPS、MRP 或最佳化計算。</p>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

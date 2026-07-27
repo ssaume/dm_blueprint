@@ -126,3 +126,39 @@ footer{padding:20px 30px;border-top:1px solid var(--line);background:#fff;color:
 }
 .module-body>.capability-list{min-height:0}
 select{font:inherit}
+
+/* Role-based access control and function-level role assignments */
+.permission-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.permission-legend-item{display:flex;align-items:flex-start;gap:9px;padding:11px 12px;background:#fff;border:1px solid var(--line);border-radius:12px}
+.permission-legend-item p{margin:1px 0 0;font-size:11px;color:var(--muted)}
+.permission-chip-row,.role-permissions{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.permission-chip{display:inline-flex;align-items:center;width:max-content;padding:3px 7px;border:1px solid;border-radius:999px;font-size:9px;font-weight:900;white-space:nowrap}
+.perm-view{background:#edf4fb;border-color:#cbdced;color:#28577d}
+.perm-execute{background:#e9f7ef;border-color:#bfe2ce;color:#14633a}
+.perm-maintain{background:#fff4e8;border-color:#f2d1aa;color:#8a4b08}
+.perm-approve{background:#f2edff;border-color:#d7ccf4;color:#5d3aa1}
+.perm-release{background:#e8f7f7;border-color:#bee4e5;color:#086b74}
+.perm-admin{background:#fff0ed;border-color:#ffd2c8;color:#9d2d20}
+.role-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.role-summary div{background:linear-gradient(135deg,#fff,#f7f9fc);border:1px solid var(--line);border-radius:14px;padding:15px 17px}
+.role-summary strong,.role-summary span{display:block}.role-summary strong{font-size:25px;color:var(--navy)}.role-summary span{font-size:11px;color:var(--muted)}
+.roles-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.role-card{position:relative;display:flex;flex-direction:column;min-height:290px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:16px;transition:.18s ease;cursor:pointer}
+.role-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#c4d2df}.role-card:focus-visible{outline:3px solid rgba(8,127,140,.2)}
+.role-card.service-role{background:linear-gradient(180deg,#fbfcff,#f4f7fb);border-style:dashed}
+.role-card-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.role-card h3{font-size:17px;line-height:1.35;margin:5px 0 0}.role-card>p{font-size:12px;color:var(--muted);margin:12px 0}
+.role-type{display:inline-flex;padding:3px 7px;border-radius:999px;background:var(--blue-soft);color:var(--navy);font-size:9px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+.service-role .role-type{background:#edf1f5;color:#526272}.role-function-count{font-size:10px;font-weight:800;color:var(--teal);background:var(--teal-soft);padding:4px 8px;border-radius:999px;white-space:nowrap}
+.role-platform-counts{display:flex;gap:6px;margin-bottom:10px}.role-platform-counts span{font-size:10px;padding:3px 7px;border-radius:7px;background:var(--surface-soft);color:var(--muted)}
+.role-permissions{padding:10px 0;border-top:1px solid var(--line)}.role-permissions>b{width:100%;font-size:9px;color:var(--teal);letter-spacing:.07em;text-transform:uppercase;margin-bottom:1px}
+.role-modules{display:flex;flex-wrap:wrap;gap:5px;margin:1px 0 13px}.role-modules span{font-size:9px;color:#526272;background:#f1f4f7;padding:3px 6px;border-radius:6px}
+.role-card>.open-link{margin-top:auto;align-self:flex-start}
+.role-assignment-block{margin:11px 0;padding:12px;border:1px solid #d5e0ec;border-radius:11px;background:#f8fafc}
+.role-assignment-title{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-bottom:8px}
+.role-assignment-group{display:grid;grid-template-columns:105px minmax(0,1fr);gap:8px;align-items:start;margin-top:7px}.role-assignment-group>span{font-size:10px;color:var(--muted);padding-top:5px}.role-assignment-group>div{display:flex;flex-wrap:wrap;gap:6px}
+.function-role-chip{border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 7px;text-align:left;color:var(--ink)}.function-role-chip:hover{border-color:var(--teal);background:var(--teal-soft)}.function-role-chip strong,.function-role-chip small{display:block}.function-role-chip strong{font-size:10px}.function-role-chip small{font-size:8px;color:var(--muted);margin-top:1px}
+.role-permission-note{display:block;color:var(--muted);font-size:9px;margin-top:9px;padding-top:8px;border-top:1px dashed var(--line)}
+.permission-count-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.permission-count-grid div{display:flex;justify-content:space-between;align-items:center;padding:9px;border:1px solid var(--line);border-radius:10px;background:var(--surface-soft)}.permission-count-grid strong{font-size:16px;color:var(--navy)}
+
+@media(max-width:1100px){.permission-legend{grid-template-columns:repeat(2,1fr)}.roles-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.permission-legend,.roles-grid,.role-summary{grid-template-columns:1fr}.role-assignment-group{grid-template-columns:1fr}.role-assignment-group>span{padding-top:0}.permission-count-grid{grid-template-columns:repeat(2,1fr)}}

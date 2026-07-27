@@ -21,6 +21,7 @@
         <button class="nav-btn active" data-view="scenarios" data-i18n="navScenarios">情境地圖</button>
         <button class="nav-btn" data-view="journey" data-i18n="navJourney">跨平台流程</button>
         <button class="nav-btn" data-view="catalog" data-i18n="navCatalog">功能目錄</button>
+        <button class="nav-btn" data-view="roles" data-i18n="navRoles">角色權限</button>
       </nav>
       <div class="topbar-actions">
         <div class="language-switch" role="group" aria-label="語系切換" data-i18n-aria="languageSwitch">
@@ -36,20 +37,21 @@
         <div class="hero-copy">
           <span class="eyebrow">Scenario-first product architecture</span>
           <h1 data-i18n="heroTitle">先從「發生什麼事」找到該用的功能</h1>
-          <p data-i18n="heroDescription">本原型不執行真實運算，而是回答：什麼情況下使用、包含哪些操作、執行頻率、由人或系統執行，以及會得到什麼結果。</p>
+          <p data-i18n="heroDescription">本原型不執行真實運算，而是回答：什麼情況下使用、包含哪些操作、由哪些角色執行、具備哪些權限、執行頻率，以及會得到什麼結果。</p>
         </div>
         <div class="hero-metrics" aria-label="原型統計" data-i18n-aria="prototypeMetrics">
           <div><strong id="scenarioMetric">14</strong><span data-i18n="metricScenarios">主要情境</span></div>
           <div><strong id="categoryMetric">112</strong><span data-i18n="metricCategories">功能類別</span></div>
           <div><strong id="detailMetric">589</strong><span data-i18n="metricFunctions">細部功能</span></div>
           <div><strong>2</strong><span data-i18n="metricPlatforms">整合平台</span></div>
+          <div><strong id="roleMetric">19</strong><span data-i18n="metricRoles">標準角色</span></div>
         </div>
       </section>
 
       <section class="toolbar" aria-label="篩選工具" data-i18n-aria="filterTools">
         <div class="search-wrap">
           <span aria-hidden="true">⌕</span>
-          <input id="globalSearch" type="search" placeholder="搜尋情境、功能、模組或關鍵字…" data-i18n-placeholder="searchPlaceholder" autocomplete="off" />
+          <input id="globalSearch" type="search" placeholder="搜尋情境、功能、模組、角色或關鍵字…" data-i18n-placeholder="searchPlaceholder" autocomplete="off" />
           <kbd>/</kbd>
         </div>
         <div class="toolbar-actions">
@@ -114,9 +116,20 @@
         </div>
         <div id="catalogEmpty" class="empty-state hidden"><strong data-i18n="catalogEmptyTitle">找不到符合條件的功能</strong><span data-i18n="catalogEmptyText">請調整平台篩選、頻率或搜尋關鍵字。</span></div>
       </section>
+
+      <section id="rolesView" class="view" aria-labelledby="rolesHeading">
+        <div class="section-heading">
+          <div><span class="section-kicker">Role-based Access Control</span><h2 id="rolesHeading" data-i18n="rolesHeading">角色與權限清單</h2></div>
+          <p data-i18n="rolesIntro">依職責與最小權限原則，區分人員角色與系統服務帳號，並統計每個角色可操作的功能範圍。</p>
+        </div>
+        <div id="permissionLegend" class="permission-legend"></div>
+        <div class="role-summary" id="roleSummary"></div>
+        <div id="rolesGrid" class="roles-grid"></div>
+        <div id="rolesEmpty" class="empty-state hidden"><strong data-i18n="rolesEmptyTitle">找不到符合條件的角色</strong><span data-i18n="rolesEmptyText">請調整平台篩選或搜尋關鍵字。</span></div>
+      </section>
     </main>
 
-    <footer><span data-i18n="footerSource">來源：產品架構.xlsx 與專案內 DM／SCP 架構討論</span><span data-i18n="footerScope">原型範圍：情境、使用案例、細部功能、執行方式、頻率、結果與關聯</span></footer>
+    <footer><span data-i18n="footerSource">來源：產品架構.xlsx 與專案內 DM／SCP 架構討論</span><span data-i18n="footerScope">原型範圍：情境、使用案例、細部功能、角色權限、執行方式、頻率、結果與關聯</span></footer>
   </div>
 
   <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
@@ -131,12 +144,14 @@
       <div><strong>1</strong><h3 data-i18n="guideOneTitle">從情境開始</h3><p data-i18n="guideOneText">以實際發生的業務問題尋找功能，不必先知道系統模組名稱。</p></div>
       <div><strong>2</strong><h3 data-i18n="guideTwoTitle">展開模組與功能</h3><p data-i18n="guideTwoText">功能目錄的模組可以收合；點擊功能類別會開啟細部功能。</p></div>
       <div><strong>3</strong><h3 data-i18n="guideThreeTitle">確認人機分工</h3><p data-i18n="guideThreeText">每個細部功能都標示使用案例，以及人工執行、系統自動或人機協作。</p></div>
+      <div><strong>4</strong><h3 data-i18n="guideFourTitle">檢查角色權限</h3><p data-i18n="guideFourText">查看主責、協作、核准與系統服務角色，以及其檢視、執行、維護、核准、發布或管理權限。</p></div>
     </div>
     <p class="dialog-note" data-i18n="guideNote">這是資訊架構與互動概念原型，不會連接真實資料、執行 ATP、MPS、MRP 或最佳化計算。</p>
   </dialog>
 
   <script src="data.js"></script>
   <script src="enrichment.js"></script>
+  <script src="roles.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

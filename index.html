@@ -3,52 +3,58 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="以業務情境瀏覽 DM 與 SCP 平台功能、細部操作、執行頻率、使用時機、結果與相依關係。" />
+  <meta name="description" content="以業務情境瀏覽 DM 與 SCP 平台功能、使用案例、執行模式、頻率、結果與相依關係。" />
   <title>DM × SCP 情境導向功能原型</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#scenarios" aria-label="回到情境總覽">
+      <a class="brand" href="#scenarios" aria-label="回到情境總覽" data-i18n-aria="brandHome">
         <span class="brand-mark" aria-hidden="true">DS</span>
         <span>
           <strong>DM × SCP Scenario Navigator</strong>
-          <small>情境導向功能互動原型</small>
+          <small data-i18n="brandSubtitle">情境導向功能互動原型</small>
         </span>
       </a>
-      <nav class="topnav" aria-label="主要導覽">
-        <button class="nav-btn active" data-view="scenarios">情境地圖</button>
-        <button class="nav-btn" data-view="journey">跨平台流程</button>
-        <button class="nav-btn" data-view="catalog">功能目錄</button>
+      <nav class="topnav" aria-label="主要導覽" data-i18n-aria="mainNavigation">
+        <button class="nav-btn active" data-view="scenarios" data-i18n="navScenarios">情境地圖</button>
+        <button class="nav-btn" data-view="journey" data-i18n="navJourney">跨平台流程</button>
+        <button class="nav-btn" data-view="catalog" data-i18n="navCatalog">功能目錄</button>
       </nav>
-      <button class="help-btn" id="helpButton" aria-label="開啟原型說明">?</button>
+      <div class="topbar-actions">
+        <div class="language-switch" role="group" aria-label="語系切換" data-i18n-aria="languageSwitch">
+          <button class="active" data-language="zh-TW">繁中</button>
+          <button data-language="en">EN</button>
+        </div>
+        <button class="help-btn" id="helpButton" aria-label="開啟原型說明" data-i18n-aria="openGuide">?</button>
+      </div>
     </header>
 
     <main>
       <section class="hero">
         <div class="hero-copy">
           <span class="eyebrow">Scenario-first product architecture</span>
-          <h1>先從「發生什麼事」找到該用的功能</h1>
-          <p>本原型不執行真實運算，而是回答四個問題：什麼情況下使用、可能包含哪些操作、應以什麼頻率執行、會得到什麼結果。</p>
+          <h1 data-i18n="heroTitle">先從「發生什麼事」找到該用的功能</h1>
+          <p data-i18n="heroDescription">本原型不執行真實運算，而是回答：什麼情況下使用、包含哪些操作、執行頻率、由人或系統執行，以及會得到什麼結果。</p>
         </div>
-        <div class="hero-metrics" aria-label="原型統計">
-          <div><strong id="scenarioMetric">14</strong><span>主要情境</span></div>
-          <div><strong id="categoryMetric">112</strong><span>功能類別</span></div>
-          <div><strong id="detailMetric">589</strong><span>細部功能</span></div>
-          <div><strong>2</strong><span>整合平台</span></div>
+        <div class="hero-metrics" aria-label="原型統計" data-i18n-aria="prototypeMetrics">
+          <div><strong id="scenarioMetric">14</strong><span data-i18n="metricScenarios">主要情境</span></div>
+          <div><strong id="categoryMetric">112</strong><span data-i18n="metricCategories">功能類別</span></div>
+          <div><strong id="detailMetric">589</strong><span data-i18n="metricFunctions">細部功能</span></div>
+          <div><strong>2</strong><span data-i18n="metricPlatforms">整合平台</span></div>
         </div>
       </section>
 
-      <section class="toolbar" aria-label="篩選工具">
+      <section class="toolbar" aria-label="篩選工具" data-i18n-aria="filterTools">
         <div class="search-wrap">
           <span aria-hidden="true">⌕</span>
-          <input id="globalSearch" type="search" placeholder="搜尋情境、功能、模組或關鍵字…" autocomplete="off" />
+          <input id="globalSearch" type="search" placeholder="搜尋情境、功能、模組或關鍵字…" data-i18n-placeholder="searchPlaceholder" autocomplete="off" />
           <kbd>/</kbd>
         </div>
         <div class="toolbar-actions">
-          <label class="frequency-select"><span>執行頻率</span><select id="frequencyFilter">
-            <option value="ALL">全部頻率</option>
+          <label class="frequency-select"><span data-i18n="frequencyLabel">執行頻率</span><select id="frequencyFilter">
+            <option value="ALL" data-i18n="frequencyAll">全部頻率</option>
             <option value="EVENT">事件觸發</option>
             <option value="CONT">持續監控</option>
             <option value="RUN">規劃批次</option>
@@ -61,92 +67,76 @@
             <option value="ADHOC">隨需</option>
             <option value="RELEASE">核准發布</option>
           </select></label>
-          <div class="segmented" id="platformFilter" aria-label="平台篩選">
-            <button class="active" data-platform="ALL">全部</button>
+          <div class="segmented" id="platformFilter" aria-label="平台篩選" data-i18n-aria="platformFilter">
+            <button class="active" data-platform="ALL" data-i18n="platformAll">全部</button>
             <button data-platform="DM">DM</button>
             <button data-platform="SCP">SCP</button>
-            <button data-platform="CROSS">跨平台</button>
+            <button data-platform="CROSS" data-i18n="platformCross">跨平台</button>
           </div>
         </div>
       </section>
 
       <section id="scenariosView" class="view active" aria-labelledby="scenarioHeading">
         <div class="section-heading">
-          <div>
-            <span class="section-kicker">Scenario Library</span>
-            <h2 id="scenarioHeading">常見業務情境</h2>
-          </div>
-          <p>點選情境查看完整功能路徑、使用條件、預期產出與跨模組關聯。</p>
+          <div><span class="section-kicker">Scenario Library</span><h2 id="scenarioHeading" data-i18n="scenarioHeading">常見業務情境</h2></div>
+          <p data-i18n="scenarioIntro">點選情境查看完整功能路徑、使用條件、預期產出與跨模組關聯。</p>
         </div>
         <div id="scenarioGrid" class="scenario-grid"></div>
-        <div id="scenarioEmpty" class="empty-state hidden">
-          <strong>找不到符合條件的情境</strong>
-          <span>請調整平台篩選或搜尋關鍵字。</span>
-        </div>
+        <div id="scenarioEmpty" class="empty-state hidden"><strong data-i18n="scenarioEmptyTitle">找不到符合條件的情境</strong><span data-i18n="scenarioEmptyText">請調整平台篩選或搜尋關鍵字。</span></div>
       </section>
 
       <section id="journeyView" class="view" aria-labelledby="journeyHeading">
         <div class="section-heading">
-          <div>
-            <span class="section-kicker">End-to-end Journey</span>
-            <h2 id="journeyHeading">DM 到 SCP 的跨平台決策流程</h2>
-          </div>
-          <p>從需求訊號到供應計畫發布，依序呈現平台交接與主要功能。</p>
+          <div><span class="section-kicker">End-to-end Journey</span><h2 id="journeyHeading" data-i18n="journeyHeading">DM 到 SCP 的跨平台決策流程</h2></div>
+          <p data-i18n="journeyIntro">從需求訊號到供應計畫發布，依序呈現平台交接與主要功能。</p>
         </div>
         <div id="journeyFlow" class="journey-flow"></div>
         <aside class="decision-rule">
           <div class="decision-icon" aria-hidden="true">↳</div>
-          <div>
-            <strong>核心分流原則</strong>
-            <p>需求變動可在既有供應計畫內快速判斷時，留在 DM 執行 ATP；一旦涉及多工廠、產能、材料、庫存或最佳化取捨，則建立正式 SCP 模擬任務。</p>
-          </div>
+          <div><strong data-i18n="decisionRuleTitle">核心分流原則</strong><p data-i18n="decisionRuleText">需求變動可在既有供應計畫內快速判斷時，留在 DM 執行 ATP；一旦涉及多工廠、產能、材料、庫存或最佳化取捨，則建立正式 SCP 模擬任務。</p></div>
         </aside>
       </section>
 
       <section id="catalogView" class="view" aria-labelledby="catalogHeading">
-        <div class="section-heading">
-          <div>
-            <span class="section-kicker">Capability Catalog</span>
-            <h2 id="catalogHeading">完整功能目錄</h2>
+        <div class="section-heading catalog-heading-row">
+          <div><span class="section-kicker">Capability Catalog</span><h2 id="catalogHeading" data-i18n="catalogHeading">完整功能目錄</h2></div>
+          <div class="catalog-heading-actions">
+            <p data-i18n="catalogIntro">模組可個別收合；點擊功能類別可查看使用案例、細部功能、頻率與人工／自動執行方式。</p>
+            <div class="catalog-expand-actions">
+              <button id="expandAllModules" data-i18n="expandAll">全部展開</button>
+              <button id="collapseAllModules" data-i18n="collapseAll">全部收合</button>
+            </div>
           </div>
-          <p>依產品模組展開，每個功能類別包含細部操作、執行頻率、使用時機、結果與相關功能。</p>
         </div>
         <div class="catalog-layout">
           <aside class="module-index" id="moduleIndex"></aside>
           <div id="catalogContent" class="catalog-content"></div>
         </div>
-        <div id="catalogEmpty" class="empty-state hidden">
-          <strong>找不到符合條件的功能</strong>
-          <span>請調整平台篩選或搜尋關鍵字。</span>
-        </div>
+        <div id="catalogEmpty" class="empty-state hidden"><strong data-i18n="catalogEmptyTitle">找不到符合條件的功能</strong><span data-i18n="catalogEmptyText">請調整平台篩選、頻率或搜尋關鍵字。</span></div>
       </section>
     </main>
 
-    <footer>
-      <span>Source: 產品架構.xlsx</span>
-      <span>Prototype scope: 情境、細部功能、執行頻率、結果、關聯</span>
-    </footer>
+    <footer><span data-i18n="footerSource">來源：產品架構.xlsx 與專案內 DM／SCP 架構討論</span><span data-i18n="footerScope">原型範圍：情境、使用案例、細部功能、執行方式、頻率、結果與關聯</span></footer>
   </div>
 
   <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
-  <aside class="detail-drawer" id="detailDrawer" aria-hidden="true" aria-label="詳細資料">
-    <button class="drawer-close" id="drawerClose" aria-label="關閉">×</button>
-    <div id="drawerContent"></div>
+  <aside class="detail-drawer" id="detailDrawer" aria-hidden="true" aria-label="詳細資料" data-i18n-aria="details">
+    <button class="drawer-close" id="drawerClose" aria-label="關閉" data-i18n-aria="close">×</button><div id="drawerContent"></div>
   </aside>
 
   <dialog id="helpDialog" class="help-dialog">
-    <button class="dialog-close" id="helpClose" aria-label="關閉">×</button>
-    <span class="section-kicker">Prototype Guide</span>
-    <h2>這個原型如何使用</h2>
+    <button class="dialog-close" id="helpClose" aria-label="關閉" data-i18n-aria="close">×</button>
+    <span class="section-kicker">Prototype Guide</span><h2 data-i18n="guideTitle">這個原型如何使用</h2>
     <div class="guide-grid">
-      <div><strong>1</strong><h3>從情境開始</h3><p>以實際發生的業務問題尋找功能，不必先知道系統模組名稱。</p></div>
-      <div><strong>2</strong><h3>查看功能路徑</h3><p>了解先用什麼、接著做什麼，以及 DM／SCP 的交接點。</p></div>
-      <div><strong>3</strong><h3>查看頻率與細項</h3><p>每個功能類別都可展開細部操作、觸發條件與建議執行節奏。</p></div>
+      <div><strong>1</strong><h3 data-i18n="guideOneTitle">從情境開始</h3><p data-i18n="guideOneText">以實際發生的業務問題尋找功能，不必先知道系統模組名稱。</p></div>
+      <div><strong>2</strong><h3 data-i18n="guideTwoTitle">展開模組與功能</h3><p data-i18n="guideTwoText">功能目錄的模組可以收合；點擊功能類別會開啟細部功能。</p></div>
+      <div><strong>3</strong><h3 data-i18n="guideThreeTitle">確認人機分工</h3><p data-i18n="guideThreeText">每個細部功能都標示使用案例，以及人工執行、系統自動或人機協作。</p></div>
     </div>
-    <p class="dialog-note">這是資訊架構與互動概念原型，不會連接真實資料、執行 ATP、MPS、MRP 或最佳化計算。</p>
+    <p class="dialog-note" data-i18n="guideNote">這是資訊架構與互動概念原型，不會連接真實資料、執行 ATP、MPS、MRP 或最佳化計算。</p>
   </dialog>
 
   <script src="data.js"></script>
+  <script src="enrichment.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
